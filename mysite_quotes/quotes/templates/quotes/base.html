@@ -20,12 +20,22 @@
                 </h1>
             </div>
             <div class="col-md-4">
-                <p>
-                    <a href="{% url 'users:signup' %}" class="btn btn-primary">SignUp</a>
-                    <a href= "{% url 'users:login' %}" class="btn btn-primary">Login</a>
-                    <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
-
-                </p>
+               {% if user.is_authenticated %}
+              <p>
+                <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary">Add Quote</a>
+                <a href="{% url 'quotes:add_author' %}" class="btn btn-primary">Add Author</a>
+                <a href="{% url 'quotes:add_tag' %}" class="btn btn-primary">Add Tag</a>
+              </p>
+              <p>
+                Welcome <b>{{ user.username }}!</b>
+                <a href="{% url 'users:logout' %}" class="btn btn-primary">Logout</a>
+              </p>
+              {% else %}
+              <p>
+                <a href="{% url 'users:signup' %}" class="btn btn-primary">Sign Up</a>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+              </p>
+          {% endif %}
             </div>
         </div>
 
